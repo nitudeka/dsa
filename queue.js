@@ -26,9 +26,12 @@ class Queue {
   dequeue() {
     if (!this.head) return;
 
+    const temp = this.head;
     this.head = this.head.next;
 
     if (!this.head) this.tail = null;
+
+    return temp.value;
   }
 }
 
@@ -42,7 +45,6 @@ queue.add(5);
 queue.add(6);
 queue.add(7);
 
-queue.dequeue();
 queue.dequeue();
 queue.dequeue();
 queue.dequeue();
