@@ -23,7 +23,7 @@ class EventLoop {
     return () => {
       return new Promise((resolve, reject) => {
         const random = Math.random();
-        if (random <= 7)
+        if (random <= 0.7)
           resolve(random); // 70% probability to resolve
         else reject();
       });
