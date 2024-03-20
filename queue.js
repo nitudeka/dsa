@@ -1,7 +1,8 @@
 class Node {
-  constructor(value) {
+  constructor(value, indx) {
     this.value = value;
     this.next = null;
+    this.index = indx;
   }
 }
 
@@ -9,10 +10,11 @@ class Queue {
   constructor() {
     this.head = null;
     this.tail = null;
+    this.count = 0;
   }
 
   add(value) {
-    const node = new Node(value);
+    const node = new Node(value, this.count);
 
     if (this.head) {
       this.tail.next = node;
@@ -21,39 +23,27 @@ class Queue {
       this.head = node;
       this.tail = node;
     }
+
+    this.count = this.count + 1;
+
+    console.log("adding to queue. total:-", this.count);
   }
 
   dequeue() {
-    if (!this.head) return;
+    if (!this.head) {
+      this.count = 0;
+      return { value: null };
+    }
 
     const temp = this.head;
     this.head = this.head.next;
 
     if (!this.head) this.tail = null;
+    else this.count = this.count - 1;
 
-    return temp.value;
+    console.log("dequing. total:-", this.count);
+    return { value: temp.value, index: temp.index };
   }
 }
 
-const queue = new Queue();
-
-queue.add(1);
-queue.add(2);
-queue.add(3);
-queue.add(4);
-queue.add(5);
-queue.add(6);
-queue.add(7);
-
-queue.dequeue();
-queue.dequeue();
-queue.dequeue();
-queue.dequeue();
-
-console.log(queue);
-
-/*
- *
- * 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
- *
- */
+module.exports = Queue;
