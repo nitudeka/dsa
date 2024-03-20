@@ -22,12 +22,10 @@ class EventLoop {
   static createDemoProcess(t) {
     return () => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          const random = Math.random();
-          if (random <= 7)
-            resolve(random); // 70% probability to resolve
-          else reject();
-        }, 1000 * t);
+        const random = Math.random();
+        if (random <= 7)
+          resolve(random); // 70% probability to resolve
+        else reject();
       });
     };
   }
@@ -40,7 +38,7 @@ class EventLoop {
     const { value: process, index } = this.processes.dequeue();
 
     if (!process) return;
-    console.log(`Executing ${index}`);
+    // console.log(`Executing ${index}`);
 
     try {
       const result = await process();

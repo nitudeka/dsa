@@ -26,7 +26,7 @@ class Queue {
 
     this.count = this.count + 1;
 
-    console.log("adding to queue. total:-", this.count);
+    // console.log("adding to queue. total:-", this.count);
   }
 
   dequeue() {
@@ -41,7 +41,7 @@ class Queue {
     if (!this.head) this.tail = null;
     else this.count = this.count - 1;
 
-    console.log("dequing. total:-", this.count);
+    // console.log("dequing. total:-", this.count);
     return { value: temp.value, index: temp.index };
   }
 }
